@@ -1,0 +1,51 @@
+extends ../layout.pug
+
+block title
+    title Play Snake
+
+block styles
+    link(rel="stylesheet", href="/static/styles/snake.css")
+
+block scripts
+   script(src="/static/scripts/keys.js")
+    //script(src="/static/scripts/snake.js")
+
+block content
+    div.menu.menu-visible
+        div.info
+            span#info-text Press enter to start
+        div.point-container
+            span.point-container Puan
+                span#point 0
+    
+    div.snake-body
+        div.snake-segment
+        div.snake-segment
+        div.snake-segment
+        div.snake-segment
+        div.snake-segment
+        div.snake-segment
+        div.snake-segment
+        div.snake-segment
+        div.snake-segment
+        div.snake-segment.head
+        
+    div.forage
+
+    div.bottom-banner.banner
+        span#point-mini 0
+
+        div.live-info
+            div.live
+            div.live
+            div.live
+        
+        //div.direct-container
+            div.left-direct(data="left" onclick="detectKey('LEFT')")
+            div.top-direct(data="top" onclick="detectKey('TOP')")
+            div.right-direct(data="right" onclick="detectKey('RIGHT')")
+            div.bottom-direct(data="bottom" onclick="detectKey('BOTTOM')")
+
+            div.enter-bottom(data="enter" onclick="detectKey('ENTER')") ENTER
+            div.esc-bottom(data="enter" onclick="detectKey('ESC')") ESC
+        //

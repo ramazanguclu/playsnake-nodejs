@@ -1,0 +1,4 @@
+http://jade-lang.com/reference/extends
+https://naltatis.github.io/jade-syntax-docs/
+https://www.clock.co.uk/insight/a-simple-website-in-nodejs-with-express-jade-and-stylus
+https://github.com/pugjs/pug/blob/master/README.md

@@ -1,0 +1,28 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        block styles
+        block scripts
+        block title
+            title Default title
+
+    body
+        div.top-banner.banner
+            h3 SNAKE
+
+            div.login-container
+                if !user
+                    a.login(href="/auth/google")
+                        img(src="/static/images/btn_google_signin_dark_pressed_web.png", alt="", srcset="").login-google
+
+                else
+                    div.user-container
+                        div.user-name= user.googleDisplayName             
+                        img(src=user.googlePhoto, alt="", srcset="").user-image
+
+                    div.logout-container
+                        a.logout(href="/api/logout") Logout
+
+        block content

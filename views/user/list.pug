@@ -1,0 +1,18 @@
+extends ../layout.pug
+
+block title
+    title User List
+
+block styles
+    link(rel="stylesheet", href="/static/styles/snake.css")
+    link(rel="stylesheet", href="/static/styles/userlist.css")
+
+block content
+    div.users-container
+        div.users-list
+         each val in userlist
+            div.users-item
+                div.users-image
+                    img(src=val.googlePhoto, alt="", srcset="")
+                div.users-name= val.googleDisplayName
+                div.users-point= val.point + ' Point'
