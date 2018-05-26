@@ -16,12 +16,12 @@ function Snake() {
         listenButton(event.keyCode);
     });
 
-    function detectKey(val) {
+     window.detectKey = function(val) {
         var code = KEYS[val];
         listenButton(code);
     }
 
-    listenButton = function (code) {
+    function listenButton(code) {
         switch (code) {
             case 13:
                 setState();
