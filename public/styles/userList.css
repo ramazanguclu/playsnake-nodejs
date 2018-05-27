@@ -27,22 +27,23 @@
 }
 
 .users-name {
-    
-width: 50%;
+    width: 40%;
 }
 
 .users-image {
-    
-width: 20%;
+    width: 10%;
 }
 
 .users-image img{
-    
-border-radius: 100%;
+    border-radius: 100%;
 }
 
 .users-point {
     width: 30%;
+}
+
+.users-point-record {
+    width: 20%;
 }
 
 @media screen and (max-width: 600px) {

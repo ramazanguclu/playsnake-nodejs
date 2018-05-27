@@ -6,6 +6,7 @@ const userSchema = new Schema({
     googleDisplayName: { type: String, default: '' },
     googlePhoto: { type: String, default: '' },
     point: { type: Number, default: 0 },
+    sessionPoint: { type: Number, default: 0 },
     isPlay: { type: Boolean, default: false }
 }, { versionKey: false });
 

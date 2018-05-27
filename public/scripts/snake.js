@@ -63,7 +63,7 @@ function Snake() {
                 break;
             case 4:
                 gameOver();
-                break
+                break;
             default:
                 break;
         }
@@ -72,6 +72,7 @@ function Snake() {
     var construct = (function cons() {
         initState = 2;
 
+        player.setPlayStatus(false);
         direction = 'right';
         prevDirection = 'right';
         initial();
@@ -136,8 +137,7 @@ function Snake() {
     };
 
     function speedSet() {
-        clearInterval(window.i);
-        clearInterval(window.x);
+        stop();
         menuClose();
         changeForagePosition();
 
@@ -150,6 +150,7 @@ function Snake() {
             }
 
             if (isForage) {
+                player.setPoint();
                 foragePosition();
                 grow();
                 writeNewPoint();
@@ -269,8 +270,9 @@ function Snake() {
     function writeNewPoint(finish) {
         var elemMenu = document.getElementById('point');
         var elemMini = document.querySelector('.player-info.current');
-        elemMenu.innerHTML = finish || Number(elemMenu.innerHTML) + 10;
-        elemMini.innerHTML = finish || Number(elemMini.innerHTML) + 10;
+
+        elemMenu.innerHTML = player.getPoint();
+        elemMini.innerHTML = player.getPoint();
     };
 
     function decreseLive(callback) {
@@ -278,7 +280,9 @@ function Snake() {
         if (elem) {
             elem.remove();
             callback(againText);
+            player.savePoint();
         } else {
+            player.savePoint('sessionEnd');
             initState = 4;
             callback(gameOverText);
         }
@@ -286,4 +290,6 @@ function Snake() {
 }
 
 
-document.addEventListener("DOMContentLoaded", Snake);
+document.addEventListener("DOMContentLoaded", function () {
+    player.loginControl(Snake);
+});

@@ -4,8 +4,15 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 var path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+//body parser for post or put methods
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 //define views
 app.set('views', path.join(__dirname, 'views'));

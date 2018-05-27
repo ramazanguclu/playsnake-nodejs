@@ -7,6 +7,8 @@ block styles
     link(rel="stylesheet", href="/static/styles/snake.css")
 
 block scripts
+    script(src="/static/scripts/ajax.js")
+    script(src="/static/scripts/player.js")
     script(src="/static/scripts/keys.js")
     script(src="/static/scripts/snake.js")
 
@@ -16,8 +18,8 @@ block content
             span#info-text Press enter to start
         div.point-container
             span.point-container Puan
-                span#point 0
-    
+                include pointPopup.pug
+
     div.snake-body
         div.snake-segment
         div.snake-segment
@@ -34,7 +36,8 @@ block content
 
     div.bottom-banner.banner
         include order.pug
-        span.player-info.current 0
+
+        include point.pug
 
         div.live-info
             div.live
