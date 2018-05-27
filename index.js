@@ -45,5 +45,5 @@ app.use(passport.session());
 //router config
 require('./router')(app);
 
-const PORT = 2000;
+const PORT = process.env.PORT || 2000;
 app.listen(PORT);
