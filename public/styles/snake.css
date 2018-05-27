@@ -134,14 +134,23 @@ span#point {
     height: 160px;
 }
 
-.top-banner h3 {
+.top-banner > a {
     margin: 0;
     padding: 0;
     font-size: 50px;
     width: 200px;
     float: left;
     line-height: 100px;
+    text-decoration: none;
+    color: black;
+    font-weight:bold;
 }
+
+.top-banner > a:hover {
+    color: #1c436d;
+    font-size:53px;
+}
+
 
 .direct-container {
     bottom: 0;
@@ -202,22 +211,25 @@ span#point {
     font-weight: bold;
 }
 
-span#point-mini {
-    float: left;
-    background: #6f4141;
-    font-size: 30px;
-    width: 100px;
-    height: 50px;
-    line-height: 50px;
-    bottom: 7px;
-    position: fixed;
-    left: 7px;
-    border-radius: 5px;
-}
-
 @media screen and (max-width: 600px) {
-    .top-banner h3 {
-        display: none;
+    .top-banner > a {
+        position: absolute;
+        font-size: 20px;
+        bottom: 2px;
+        right: 4px;
+        height: 40px;
+        line-height: 40px;
+        width: 153px;
+        border-radius: 5px;
+        border-color: 1px solid #46b8da;
+        background-color: #5bc0de;
+        color: #fff;
+    }
+
+    .top-banner > a:hover {
+        font-size: 20px;
+        width: 153px;
+        color: #fff;
     }
 
     .login-container {
@@ -234,6 +246,27 @@ span#point-mini {
         margin-right: initial;
         margin-left: 5px;
     }
+
+    .header-button {
+        margin-top: 24px !important;
+    }
+
+    .header-button > a {
+        padding: 13px !important;
+    }
+
+    a.login {
+        text-align: right;
+        float: right;
+    }
+
+    .login-google {
+        margin-top: 5px !important;
+    }
+
+    .direct-container {
+        left: 54% !important;
+    }
   }
 
   .user-name {
@@ -245,9 +278,17 @@ img.user-image {
     border-radius: 100%;
 }
 
-.logout-container {
+.header-button {
     margin-top: 40px;
-    float: left;
+    float: right;
+}
+
+.players {
+    margin-right: 6px;
+}
+
+.logout-container {
+    margin-right: 6px; 
 }
 
 .user-container {
@@ -256,7 +297,7 @@ img.user-image {
     margin-right: 15px;
 }
 
-a.logout {
+.header-button > a {
     text-decoration: none;
     color: #4e2f2f;
     background-color: #5bc0de;
@@ -266,10 +307,45 @@ a.logout {
     border-color: #46b8da;
 }
 
-a.logout:hover{
-    background-color: #31b0d5;
+.login-google {
+    margin-top: 26px;
 }
 
-.login-google {
-    margin-top: 28px;
+.bottom-banner .player-info {
+    float: left;
+    background: #6f4141;
+    font-size: 30px;
+    width: 100px;
+    height: 50px;
+    line-height: 50px; 
+    position: fixed;
+    left: 7px;
+    border-radius: 5px;
+}
+
+.bottom-banner .player-info.order {
+    bottom: 106px;
+}
+
+.bottom-banner .player-info.current {
+    bottom: 7px;
+}
+
+.esc-bottom {
+    bottom: 66px;
+    left: 8px;
+    width: 98px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+}
+
+.button {
+    background: #5bc0de;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.button:hover {
+    background-color: #31b0d5;
 }

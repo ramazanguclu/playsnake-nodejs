@@ -1,4 +1,5 @@
 var speedSnake = 100;
+var forageSpeed = 10;
 var direction = 'right';
 var prevDirection = 'right';
 var storageTop;
@@ -16,30 +17,38 @@ function Snake() {
         listenButton(event.keyCode);
     });
 
-     window.detectKey = function(val) {
+    window.detectKey = function (val) {
         var code = KEYS[val];
         listenButton(code);
     }
 
     function listenButton(code) {
         switch (code) {
-            case 13:
+            case KEYS.ENTER:
                 setState();
                 break;
-            case 37:
+            case KEYS.LEFT:
                 direction = prevDirection === 'right' ? 'right' : 'left';
                 break;
-            case 38:
+            case KEYS.TOP:
                 direction = prevDirection === 'down' ? 'down' : 'up';
                 break;
-            case 39:
+            case KEYS.RIGHT:
                 direction = prevDirection === 'left' ? 'left' : 'right';
                 break;
-            case 40:
+            case KEYS.BOTTOM:
                 direction = prevDirection === 'up' ? 'up' : 'down';
+                break;
+            case KEYS.ESC:
+                stop();
                 break;
         }
     };
+
+    function stop() {
+        clearInterval(window.i);
+        clearInterval(window.x);
+    }
 
     function setState() {
         switch (initState) {
@@ -73,7 +82,7 @@ function Snake() {
     function changeForagePosition() {
         window.x = setInterval(function () {
             foragePosition();
-        }, 15000);
+        }, forageSpeed * 1000);
     }
 
     function initial() {
@@ -99,8 +108,7 @@ function Snake() {
 
     function destruct() {
         initState = 1;
-        clearInterval(window.i);
-        clearInterval(window.x);
+        stop();
         decreseLive(menuOpen);
     };
 
@@ -132,6 +140,7 @@ function Snake() {
         clearInterval(window.x);
         menuClose();
         changeForagePosition();
+
         window.i = setInterval(function () {
             var segment = document.getElementsByClassName('snake-segment');
 
@@ -259,7 +268,7 @@ function Snake() {
 
     function writeNewPoint(finish) {
         var elemMenu = document.getElementById('point');
-        var elemMini = document.getElementById('point-mini');
+        var elemMini = document.querySelector('.player-info.current');
         elemMenu.innerHTML = finish || Number(elemMenu.innerHTML) + 10;
         elemMini.innerHTML = finish || Number(elemMini.innerHTML) + 10;
     };

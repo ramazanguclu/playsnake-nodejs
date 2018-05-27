@@ -11,6 +11,6 @@ module.exports = (app) => {
     app.get('/api/current_user', AuthController.CurrentUser);
 
     app.get('/', HomeController.Index);
-
+    
     app.get('/users', requireLogin, UserController.List);
 };

@@ -10,7 +10,7 @@ html(lang="en")
 
     body
         div.top-banner.banner
-            h3 SNAKE
+            a(href="/") SNAKE
 
             div.login-container
                 if !user
@@ -22,7 +22,11 @@ html(lang="en")
                         div.user-name= user.googleDisplayName             
                         img(src=user.googlePhoto, alt="", srcset="").user-image
 
-                    div.logout-container
-                        a.logout(href="/api/logout") Logout
+                    div.header-button.logout-container
+                        a.logout.button(href="/api/logout") Logout
+
+                    div.header-button.players
+                        a.players-button.button(href="/users") Players
+
 
         block content

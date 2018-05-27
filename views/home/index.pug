@@ -33,12 +33,14 @@ block content
     div.forage
 
     div.bottom-banner.banner
-        span#point-mini 0
+        include order.pug
+        span.player-info.current 0
 
         div.live-info
             div.live
             div.live
             div.live
+        
         
         div.direct-container
             div.left-direct(data="left" onclick="detectKey('LEFT')")
@@ -47,5 +49,6 @@ block content
             div.bottom-direct(data="bottom" onclick="detectKey('BOTTOM')")
 
             div.enter-bottom(data="enter" onclick="detectKey('ENTER')") ENTER
-            div.esc-bottom(data="enter" onclick="detectKey('ESC')") ESC
-        
+
+        div.esc-bottom.button(data="esc" onclick="detectKey('ESC')") ESC    
+            
