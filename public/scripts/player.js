@@ -5,8 +5,6 @@ var player = (function () {
 
     return {
         loginControl: function (callback) {
-            var ajax = new Ajax();
-
             ajax.get('/api/current_user', false, function (r) {
                 if (r) {
                     isLogin = true;
@@ -23,13 +21,10 @@ var player = (function () {
         setPlayStatus: function (status) {
             if (!isLogin) return;
 
-            var ajax = new Ajax();
             ajax.post('/api/player/status', { isPlay: status });
         },
         savePoint: function (type) {
             if (!isLogin) return;
-
-            var ajax = new Ajax();
 
             if (type === 'sessionEnd') {
                 ajax.post('/api/point/save', { point: point, sessionPoint: this.sessionPoint() });

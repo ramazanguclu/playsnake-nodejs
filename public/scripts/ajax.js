@@ -1,47 +1,46 @@
-function Ajax() {
-    this.url;
-    this.params = '';
-    this.callback;
-    this.isPost = false;
+var ajax = (function () {
+    var urlRequest;
+    var params = '';
+    var callbackRequest;
+    var isPost = false;
 
-    this.post = function (url, params, callback) {
-        this.isPost = true;
-        this.url = url;
-        if (typeof params === 'object') this.generateParams(params);
-        this.callback = callback;
-        this.sendRequest('POST');
-    }
+    return {
+        post: function (url, params, callback) {
+            isPost = true;
+            urlRequest = url;
+            if (typeof params === 'object') this.generateParams(params);
+            callbackRequest = callback;
+            this.sendRequest('POST');
+        },
+        get: function (url, params, callback) {
+            urlRequest = url;
+            if (typeof params === 'object') this.generateParams(params);
+            callbackRequest = callback;
 
-    this.get = function (url, params, callback) {
-        this.url = url;
-        if (typeof params === 'object') this.generateParams(params);
-        this.callback = callback;
+            this.sendRequest('GET');
+        },
+        generateParams: function (params) {
+            var arr = [];
+            for (var k in params) { arr.push(k + '=' + params[k]) };
 
-        this.sendRequest('GET');
-    }
+            params = (isPost ? '' : '?') + arr.join('&');
+        },
+        sendRequest: function (type) {
+            var http = new XMLHttpRequest();
+            
+            http.open(type, urlRequest + (isPost ? '' : params), true);
 
-    this.generateParams = function (params) {
-        var arr = [];
-        for (var k in params) { arr.push(k + '=' + params[k]) };
-
-        this.params = (this.isPost ? '' : '?') + arr.join('&');
-    }
-
-    this.sendRequest = function (type) {
-        var http = new XMLHttpRequest();
-
-        http.open(type, this.url + (this.isPost ? '' : this.params), true);
-
-        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        var callback = this.callback;
-        http.onreadystatechange = function () {
-            if (http.readyState == XMLHttpRequest.DONE && http.status == 200) {
-                if (typeof callback === 'function') {
-                    callback(http.responseText);
+            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            var callback = callbackRequest;
+            http.onreadystatechange = function () {
+                if (http.readyState == XMLHttpRequest.DONE && http.status == 200) {
+                    if (typeof callback === 'function') {
+                        callback(http.responseText);
+                    }
                 }
             }
+        
+            isPost ? http.send(params) : http.send();
         }
-
-        this.isPost ? http.send(this.params) : http.send();
     }
-}
+})();
